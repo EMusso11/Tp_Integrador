@@ -1,8 +1,7 @@
 package Musso.Tp_Integrador.modelo;
 
 import java.io.ObjectInputStream.GetField;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Planta extends Vertice<Planta> {
 
@@ -13,11 +12,12 @@ public class Planta extends Vertice<Planta> {
     private Map<Integer, Stock> productos; // la clave es el id_producto
 
     public Planta() {}
-
+    
     public Planta(String nombre, Integer id) {
         this.nombre = nombre;
         this.id_planta = id;
-        super.setValor(new Planta());
+        this.camiones = new ArrayList<Camion>();
+//        this.productos= new Map<Integer, Stock>();
     }
     
     public void registrarStock(Producto producto, Integer id_insumo, String unidad, Double cantidad, Planta puntoDePedido) {
@@ -43,10 +43,6 @@ public class Planta extends Vertice<Planta> {
 
 	public void setId_planta(Integer id_planta) {
 		this.id_planta = id_planta;
-	}
-
-	
-	}
-    
+	}   
 
 }

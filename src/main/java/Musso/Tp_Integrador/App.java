@@ -1,9 +1,13 @@
 package Musso.Tp_Integrador;
 
+import java.awt.Color;
 import java.awt.MenuBar;
 import javax.swing.*;
 
 import Musso.Tp_Integrador.gui.*;
+import Musso.Tp_Integrador.modelo.GrafoPlantas;
+import Musso.Tp_Integrador.modelo.Planta;
+import Musso.Tp_Integrador.modelo.Ruta;
 
 public class App {
 	
@@ -24,9 +28,39 @@ public class App {
 	private JMenuItem menuItemAñadirPlanta;
 	private JMenuItem menuItemInfoPlanta;
 	private JPanel panelCamion;
+	
+	public static void main(String[] args) {
+		App app = new App();
+		AppEmpresa appE = new AppEmpresa();
+		
+//		-----------------test---------------------
+//		appE.addPlanta("Planta1");
+//		appE.addPlanta("Planta2");
+//		appE.addPlanta("Planta3");
+//		appE.addPlanta("Planta4");
+//		System.out.println("Exito. Plantas creadas.");
+//		System.out.println(appE.getGrafo().getPlantas().size());
+//		
+//		System.out.println(appE.buscarPlanta("Puerto acopio").getNombre());
+		
+//		Ruta r1 = new Ruta(appE.buscarPlanta("Puerto acopio"), appE.buscarPlanta("Planta2"), 10.0, 1.0, 100.0);
+//		Ruta r2 = new Ruta(appE.buscarPlanta("Planta2"), appE.buscarPlanta("Planta3"), 20.0, 2.0, 200.0);
+//		Ruta r3 = new Ruta(appE.buscarPlanta("Planta3"), appE.buscarPlanta("Planta4"), 30.0, 3.0, 300.0);
+//		Ruta r4 = new Ruta(appE.buscarPlanta("Planta1"), appE.buscarPlanta("Planta4"), 40.0, 4.0, 400.0);
+//		appE.addRuta(r1);
+//		appE.addRuta(r2);
+//		appE.addRuta(r3);
+//		appE.addRuta(r4);
+//		System.out.println("Exito. Rutas creadas.");
+		
+		app.armarApp(appE);
+	}
 
-	private void armarApp() {
+	private void armarApp(AppEmpresa appE) {
+				
+		
 		this.frame = new JFrame("Empresa XXX");
+		this.frame.setBackground(Color.lightGray);		
 		this.frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		
 		this.menuBar = new JMenuBar();
@@ -34,7 +68,7 @@ public class App {
 //		TODO en el panel principal muestro info de las plantas en forma de tabla
 				this.tab = new JTabbedPane();
 		this.tab.addTab("Plantas", panelMainPlanta = new PanelMainPlanta());
-		this.tab.addTab("Camiones", panelMainCamion = new PanelMainCamion());
+		this.tab.addTab("Camiones", panelMainCamion = new PanelMainCamion(appE.getCamiones()));
 		this.frame.add(tab);
 		
 		this.menuArchivo = new JMenu("File");
@@ -98,7 +132,7 @@ public class App {
 //		----------------------------------------------------------------
 		this.menuItemAñadirPlanta = new JMenuItem("Añadir Ruta");
 		this.menuItemAñadirPlanta.addActionListener( a -> {
-			this.frame.setContentPane(panelCamion = new PanelAñadirRuta());
+			this.frame.setContentPane(panelCamion = new PanelAñadirRuta(appE.getGrafo().getPlantas()));
 			this.frame.revalidate();
 			this.frame.repaint();
 		});
@@ -126,8 +160,5 @@ public class App {
 		this.frame.setVisible(true);
 	}
 	
-	public static void main(String[] args) {
-		App app = new App();
-		app.armarApp();
-	}
+	
 }

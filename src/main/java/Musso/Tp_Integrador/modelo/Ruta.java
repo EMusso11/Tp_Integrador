@@ -1,5 +1,7 @@
 package Musso.Tp_Integrador.modelo;
 
+import java.util.Optional;
+
 public class Ruta extends Arista<Ruta> {
 	
     private Planta plantaOrigen;
@@ -7,9 +9,7 @@ public class Ruta extends Arista<Ruta> {
     private Double distancia; //en KM
     private Double duracion;  //en HS
     private Double pesoMax;
-    
-    public Ruta() {};
-    
+        
     public Ruta(Planta origen, Planta destino, Double dist, Double dur, Double max) {
     	this.plantaOrigen = origen;
     	this.plantaDestino = destino;

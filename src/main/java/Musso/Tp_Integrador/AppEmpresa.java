@@ -10,29 +10,34 @@ import Musso.Tp_Integrador.modelo.*;
 
 public class AppEmpresa {
 
-    static GrafoPlantas plantas = new GrafoPlantas();
+    private  GrafoPlantas grafo = new GrafoPlantas();
     private List<Camion> camiones;
     
-    public static void main(String[] args) {
-    	
-    }
-    
     public AppEmpresa() {
-    	super();
-    	this.addPlanta("Puerto acopio");
+    	Planta p = new Planta("Puerto acopio", 0);
+    	grafo.addPlanta(p);
     }
-        
+    
     public void addPlanta(String nombre) {
-    	Planta p = new Planta(nombre, plantas.getVertices().size());
-    	plantas.addNodo(p);
+    	Integer id = grafo.getPlantas().size();
+    	Planta p = new Planta(nombre, id);
+    	grafo.addPlanta(p);
     }
     
-    public void addRuta(Ruta ruta) {
-    	this.plantas.conectar(ruta.getPlantaOrigen(), ruta.getPlantaDestino(), ruta.getDistancia(), ruta.getDuracion(), ruta.getPesoMax());
-    	
+    public void addRuta(Ruta r) {
+    	grafo.addRuta(r);
     }
     
-    public void altaCamion(String patente, String marca, String modelo,
+     
+    public GrafoPlantas getGrafo() {
+		return grafo;
+	}
+
+	public void setGrafo(GrafoPlantas grafo) {
+		this.grafo = grafo;
+	}
+
+	public void altaCamion(String patente, String marca, String modelo,
 			Double kilometraje, Double costoPorKm, Double costoPorHora,
 			LocalDate fechaCompra) {
     	Camion c = new Camion(patente, marca, modelo, kilometraje, costoPorKm, costoPorHora, fechaCompra);
@@ -165,26 +170,19 @@ public class AppEmpresa {
 									.findFirst();
 	}
     
+    public Planta buscarPlanta(String nombre) {
+		return grafo.getPlantas().stream()
+							.filter( p1 -> p1.getNombre().equals(nombre) )
+							.findFirst().orElse(null);
+    }
+
+    
     public List<Camion> buscarCamiones(Predicate<Camion> p) {
 		return this.camiones.stream()
 							.filter(p)
 							.collect(Collectors.toList());
     }
-
-	public static String[] getPlantas() {
-		String[] p = new String[100];
-		int i=0;
-		for( Vertice<Planta> unaPlanta :  plantas.getVertices() ) {
-			p[i] = unaPlanta.getValor().getNombre();
-			i++;
-		}
-		return p;
-	}
-
-	public void setPlantas(GrafoPlantas plantas) {
-		this.plantas = plantas;
-	}
-
+    
 	public List<Camion> getCamiones() {
 		return camiones;
 	}
@@ -192,6 +190,7 @@ public class AppEmpresa {
 	public void setCamiones(List<Camion> camiones) {
 		this.camiones = camiones;
 	}
+
     
     
     

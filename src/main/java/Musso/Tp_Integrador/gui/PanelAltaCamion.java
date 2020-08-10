@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.ArrayList;
 import javax.swing.*;
 
-import Musso.Tp_Integrador.Utils.CamionController;
-
 public class PanelAltaCamion extends JPanel {
 	
 	public PanelAltaCamion(){
@@ -15,7 +13,9 @@ public class PanelAltaCamion extends JPanel {
 	}
 
 	public void armarPanel() {
+		
 		this.setBackground(Color.lightGray);
+		
 		JComponent labelPresentacion = new JLabel("Alta Camion");
 		labelPresentacion.setFont(new Font("Calibri", Font.BOLD, 24));
 		labelPresentacion.setForeground(Color.BLUE);

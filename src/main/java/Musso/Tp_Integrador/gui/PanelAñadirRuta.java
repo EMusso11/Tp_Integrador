@@ -19,12 +19,12 @@ import Musso.Tp_Integrador.modelo.Planta;
 
 public class PanelAñadirRuta extends JPanel {
 	
-	public PanelAñadirRuta(){
+	public PanelAñadirRuta(List<Planta> list){
 		super();
-		this.armarPanel();
+		this.armarPanel(list);
 	}
 
-	public void armarPanel() {
+	public void armarPanel(List<Planta> plantas) {
 
 		this.setBackground(Color.lightGray);
 		JComponent labelPresentacion = new JLabel("Añadir nueva ruta");
@@ -33,13 +33,18 @@ public class PanelAñadirRuta extends JPanel {
 		
 		JComponent labelPlantaOrigen = new JLabel("Planta de origen");
 		labelPlantaOrigen.setFont(new Font("Calibri", Font.ITALIC, 18));
-		String[] plantas = AppEmpresa.getPlantas();
-//		String[] plantas = { "A", "B", "C" };
-		JComboBox<String> boxPlantaOrigen = new JComboBox<String>(plantas);
+		
+		String[] plantasBox = new String[30];
+		int i=0;
+		for( Planta unaPlanta : plantas ) {
+			plantasBox[i] = unaPlanta.getNombre();
+			i++;
+		}
+		JComboBox<String> boxPlantaOrigen = new JComboBox<String>(plantasBox);
 		
 		JComponent labelPlantaDestino = new JLabel("Planta destino");
 		labelPlantaDestino.setFont(new Font("Calibri", Font.ITALIC, 18));
-		JComboBox<String> boxPlantaDestino = new JComboBox<String>(plantas);
+		JComboBox<String> boxPlantaDestino = new JComboBox<String>(plantasBox);
 		
 	
 		FlowLayout flw = new FlowLayout();
