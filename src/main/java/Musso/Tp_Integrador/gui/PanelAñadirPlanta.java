@@ -5,6 +5,7 @@ import java.awt.ComponentOrientation;
 import java.awt.FlowLayout;
 import java.awt.Font;
 
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -19,16 +20,22 @@ public class PanelAñadirPlanta extends JPanel {
 
 	public void armarPanel() {
 
-		this.setBackground(Color.lightGray);
+		this.setBackground(Color.BLACK);
 		JComponent labelPresentacion = new JLabel("Agregar nueva planta");
 		labelPresentacion.setFont(new Font("Calibri", Font.BOLD, 24));
-		labelPresentacion.setForeground(Color.BLUE);
+		labelPresentacion.setForeground(Color.ORANGE);
 		
 		JComponent labelDia = new JLabel("Planta de origen");
+		
+
+		JComponent buttonAñadir = new JButton("Añadir");
+		JComponent buttonCancelar = new JButton("Cancelar");
 	
 		FlowLayout flw = new FlowLayout();
 		this.setLayout(flw);
 		this.add(labelPresentacion);
+		this.add(buttonAñadir);
+		this.add(buttonCancelar);
 		this.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 	}
 }

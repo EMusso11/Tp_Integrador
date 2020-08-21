@@ -27,46 +27,57 @@ public class App {
 	private JMenu menuPlanta;
 	private JMenuItem menuItemAñadirPlanta;
 	private JMenuItem menuItemInfoPlanta;
+	private JMenuItem menuItemAñadirInsumo;
 	private JPanel panelCamion;
+	private JPanel panelPlanta;
+	private JPanel panelInsumo;
 	
 	public static void main(String[] args) {
 		App app = new App();
 		AppEmpresa appE = new AppEmpresa();
+		app.armarApp(appE);
 		
 //		-----------------test---------------------
-//		appE.addPlanta("Planta1");
-//		appE.addPlanta("Planta2");
-//		appE.addPlanta("Planta3");
-//		appE.addPlanta("Planta4");
+		appE.addPlanta("Planta1");
+		appE.addPlanta("Planta2");
+		appE.addPlanta("Planta3");
+		appE.addPlanta("Planta4");
 //		System.out.println("Exito. Plantas creadas.");
 //		System.out.println(appE.getGrafo().getPlantas().size());
-//		
+		
 //		System.out.println(appE.buscarPlanta("Puerto acopio").getNombre());
 		
-//		Ruta r1 = new Ruta(appE.buscarPlanta("Puerto acopio"), appE.buscarPlanta("Planta2"), 10.0, 1.0, 100.0);
-//		Ruta r2 = new Ruta(appE.buscarPlanta("Planta2"), appE.buscarPlanta("Planta3"), 20.0, 2.0, 200.0);
-//		Ruta r3 = new Ruta(appE.buscarPlanta("Planta3"), appE.buscarPlanta("Planta4"), 30.0, 3.0, 300.0);
-//		Ruta r4 = new Ruta(appE.buscarPlanta("Planta1"), appE.buscarPlanta("Planta4"), 40.0, 4.0, 400.0);
-//		appE.addRuta(r1);
-//		appE.addRuta(r2);
-//		appE.addRuta(r3);
-//		appE.addRuta(r4);
+		Ruta r1 = new Ruta(appE.buscarPlanta("Puerto acopio"), appE.buscarPlanta("Planta2"), 10.0, 1.0, 100.0);
+		Ruta r2 = new Ruta(appE.buscarPlanta("Planta2"), appE.buscarPlanta("Planta3"), 20.0, 2.0, 200.0);
+		Ruta r3 = new Ruta(appE.buscarPlanta("Planta3"), appE.buscarPlanta("Planta4"), 30.0, 3.0, 300.0);
+		Ruta r4 = new Ruta(appE.buscarPlanta("Planta1"), appE.buscarPlanta("Planta4"), 40.0, 4.0, 400.0);
+		appE.addRuta(r1);
+		appE.addRuta(r2);
+		appE.addRuta(r3);
+		appE.addRuta(r4);
 //		System.out.println("Exito. Rutas creadas.");
+//		------------------------------------------
 		
-		app.armarApp(appE);
 	}
 
 	private void armarApp(AppEmpresa appE) {
-				
+		
+		try {
+			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+				| UnsupportedLookAndFeelException e1) {
+			e1.printStackTrace();
+		}
 		
 		this.frame = new JFrame("Empresa XXX");
-		this.frame.setBackground(Color.lightGray);		
+		this.frame.setBackground(Color.BLACK);
 		this.frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		
 		this.menuBar = new JMenuBar();
 		
+		
 //		TODO en el panel principal muestro info de las plantas en forma de tabla
-				this.tab = new JTabbedPane();
+		this.tab = new JTabbedPane();
 		this.tab.addTab("Plantas", panelMainPlanta = new PanelMainPlanta());
 		this.tab.addTab("Camiones", panelMainCamion = new PanelMainCamion(appE.getCamiones()));
 		this.frame.add(tab);
@@ -100,53 +111,36 @@ public class App {
 			this.frame.repaint();
 		});
 //		----------------------------------------------------------------
-		this.menuItemVisualizarCamion = new JMenuItem("Visualizar Camiones");
-		this.menuItemVisualizarCamion.addActionListener( a -> {
-			this.frame.setContentPane(panelCamion = new PanelVisualizarCamion());
-			this.frame.revalidate();
-			this.frame.repaint();
-		});
-//		----------------------------------------------------------------
-		this.menuItemVisualizarCamion = new JMenuItem("Visualizar Camiones");
-		this.menuItemBajaCamion.addActionListener( a -> {
-			this.frame.setContentPane(panelCamion = new PanelVisualizarCamion());
-			this.frame.revalidate();
-			this.frame.repaint();
-		});
-//		----------------------------------------------------------------
-		
 		this.menuCamion.add(menuItemAltaCamion); //agrego
 		this.menuCamion.add(menuItemBajaCamion);
 		this.menuCamion.add(menuItemBuscarCamion);
-		this.menuCamion.add(menuItemVisualizarCamion);
 		
 		this.menuPlanta = new JMenu("Planta");
 //		---------------------------------------------------------------- Planta
 		// TODO PLANTA ORIGEN Y DESTINO VAN A SER COMBOBOX
 		this.menuItemAñadirPlanta = new JMenuItem("Añadir Planta");
 		this.menuItemAñadirPlanta.addActionListener( a -> {
-			this.frame.setContentPane(panelCamion = new PanelAñadirPlanta());
+			this.frame.setContentPane(panelPlanta = new PanelAñadirPlanta());
 			this.frame.revalidate();
 			this.frame.repaint();
 		});
 //		----------------------------------------------------------------
 		this.menuItemAñadirPlanta = new JMenuItem("Añadir Ruta");
 		this.menuItemAñadirPlanta.addActionListener( a -> {
-			this.frame.setContentPane(panelCamion = new PanelAñadirRuta(appE.getGrafo().getPlantas()));
+			this.frame.setContentPane(panelPlanta = new PanelAñadirRuta(appE.getGrafo().getPlantas()));
 			this.frame.revalidate();
 			this.frame.repaint();
 		});
 //		----------------------------------------------------------------
-		this.menuItemInfoPlanta = new JMenuItem("Info. Planta");
-		this.menuItemInfoPlanta.addActionListener( a -> {
-			this.frame.setContentPane(panelCamion = new PanelInfoPlanta());
+		this.menuItemAñadirInsumo = new JMenuItem("Añadir Insumo");
+		this.menuItemAñadirInsumo.addActionListener( a -> {
+			this.frame.setContentPane(panelInsumo = new PanelAñadirInsumo(appE.getPlantas(), this.frame));
 			this.frame.revalidate();
 			this.frame.repaint();
 		});
-//		----------------------------------------------------------------
-					
-		this.menuPlanta.add(menuItemAñadirPlanta); //agrego
-		this.menuPlanta.add(menuItemInfoPlanta);
+//		----------------------------------------------------------------					
+		this.menuPlanta.add(menuItemAñadirPlanta);
+		this.menuPlanta.add(menuItemAñadirInsumo);
 		
 		this.menuBar.add(menuArchivo);
 		this.menuBar.add(menuCamion);
@@ -158,6 +152,9 @@ public class App {
 		this.frame.setExtendedState(JFrame.MAXIMIZED_BOTH); // abre en pantalla completa
 //		this.frame.setUndecorated(true);
 		this.frame.setVisible(true);
+		
+//		----------------------------------------------------------------
+		
 	}
 	
 	

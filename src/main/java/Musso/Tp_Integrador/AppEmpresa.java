@@ -9,6 +9,8 @@ import Musso.Tp_Integrador.exceptions.CamionesNoEncontradosPorCriterioException;
 import Musso.Tp_Integrador.modelo.*;
 
 public class AppEmpresa {
+	
+	public static final int maxPlantas = 30; //define la maxima cant de plantas para la cual esta diseñado el sistema
 
     private  GrafoPlantas grafo = new GrafoPlantas();
     private List<Camion> camiones;
@@ -189,6 +191,10 @@ public class AppEmpresa {
 
 	public void setCamiones(List<Camion> camiones) {
 		this.camiones = camiones;
+	}
+
+	public List<Planta> getPlantas() {
+		return grafo.getPlantas();
 	}
 
     

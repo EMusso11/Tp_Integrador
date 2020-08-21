@@ -21,11 +21,11 @@ public class PanelMainPlanta extends JPanel {
 
 	public void armarPanel() {
 		
-		this.setBackground(Color.lightGray);
+		this.setBackground(Color.BLACK);
 		
 		JLabel labelPresentacion = new JLabel("Plantas");
 		labelPresentacion.setFont(new Font("Calibri", Font.BOLD, 24));
-		labelPresentacion.setForeground(Color.BLUE);
+		labelPresentacion.setForeground(Color.ORANGE);
 		
 //		TODO agregar info de plantas		
 //		String[] columns = { "ID", "Nombre", "Productos", "KG Insumo Liq", "KG Insumo Gral" };

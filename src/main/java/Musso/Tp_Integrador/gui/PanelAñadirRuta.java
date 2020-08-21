@@ -26,15 +26,16 @@ public class PanelAñadirRuta extends JPanel {
 
 	public void armarPanel(List<Planta> plantas) {
 
-		this.setBackground(Color.lightGray);
+		this.setBackground(Color.BLACK);
 		JComponent labelPresentacion = new JLabel("Añadir nueva ruta");
 		labelPresentacion.setFont(new Font("Calibri", Font.BOLD, 24));
-		labelPresentacion.setForeground(Color.BLUE);
+		labelPresentacion.setForeground(Color.ORANGE);
 		
 		JComponent labelPlantaOrigen = new JLabel("Planta de origen");
 		labelPlantaOrigen.setFont(new Font("Calibri", Font.ITALIC, 18));
+		labelPlantaOrigen.setForeground(Color.WHITE);
 		
-		String[] plantasBox = new String[30];
+		String[] plantasBox = new String[plantas.size()];
 		int i=0;
 		for( Planta unaPlanta : plantas ) {
 			plantasBox[i] = unaPlanta.getNombre();
@@ -44,6 +45,7 @@ public class PanelAñadirRuta extends JPanel {
 		
 		JComponent labelPlantaDestino = new JLabel("Planta destino");
 		labelPlantaDestino.setFont(new Font("Calibri", Font.ITALIC, 18));
+		labelPlantaDestino.setForeground(Color.WHITE);
 		JComboBox<String> boxPlantaDestino = new JComboBox<String>(plantasBox);
 		
 	

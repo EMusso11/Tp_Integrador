@@ -19,9 +19,9 @@ public class PanelMainCamion extends JPanel {
 	}
 
 	public void armarPanel(List<Camion> camiones) {
-		this.setBackground(Color.lightGray);
+		this.setBackground(Color.BLACK);
 		labelPresentacion.setFont(new Font("Calibri", Font.BOLD, 24));
-		labelPresentacion.setForeground(Color.BLUE);
+		labelPresentacion.setForeground(Color.ORANGE);
 		
 //		TODO agregar info camiones
 		
@@ -38,7 +38,6 @@ public class PanelMainCamion extends JPanel {
 		FlowLayout flw = new FlowLayout();
 		this.setLayout(flw);
 		this.add(labelPresentacion);
-		this.add(labelPresentacion2);
 		this.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 		
 //		BorderLayout bly = new BorderLayout();

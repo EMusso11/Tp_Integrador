@@ -3,6 +3,8 @@ package Musso.Tp_Integrador.modelo;
 import java.util.*;
 import java.util.stream.*;
 
+import Musso.Tp_Integrador.AppEmpresa;
+
 public class Grafo<T> {
 	protected List<Arista<T>> aristas;
 	protected List<Vertice<T>> vertices;
@@ -171,6 +173,101 @@ public class Grafo<T> {
     	}
     	return false;
     }
+    
+    List<Vertice<T>> camino = new ArrayList<Vertice<T>>();
+    public Double flujoMaximo(Vertice<T> a, Vertice<T> b) {
+		Double result = 0.0;
+		Grafo<T> g = this;
+		camino = g.encontrarCamino(a, b);
+			
+		do {
+			camino = g.encontrarCamino(a, b);
+			Double minor =  (Double) g.getAristas().stream()
+												.filter( a1 -> camino.contains(a1.getInicio()) && camino.contains(a1.getFin()) )
+												.map( a1 -> a1.getValor() ).min(null).get();			
+			result += minor;		
+			
+			g.getAristas().stream()
+						.filter( a1 -> camino.contains(a1.getInicio()) && camino.contains(a1.getFin()) )
+						.forEach( a1 -> a1.setValor(a1.getValor().floatValue()-minor) );
+		} while(camino!=null);
+		
+		return result;
+	}
+    
+    public Boolean hayCaminoMayorACero(Vertice<T> v1,Vertice<T> v2) {
+		Boolean mayCero = false;
+    	List<Vertice<T>> adyacentes = getAdyacentes(v1);
+    	for(Vertice<T> vAdy : adyacentes) {
+			mayCero = aristas.stream()
+							.filter( a1 -> a1.getInicio().equals(vAdy) && a1.getFin().equals(v2) )
+							.filter( a1 -> (int)a1.getValor() > 0).count() > 0;
+    		if(vAdy.equals(v2) && mayCero) {
+    			return true;
+    		} else {
+    			return hayCamino(vAdy, v2);
+    		}
+    	}
+    	return false;
+    }
+	
+	public List<Vertice<T>> encontrarCamino(Vertice<T> a, Vertice<T> b) {
+		List<Vertice<T>> result = new ArrayList<Vertice<T>>();
+		if(!hayCaminoMayorACero(a, b))
+			return null;
+		
+		if(a.equals(b)) {
+			result.add(b);
+			return result;
+		}			
+		
+		result.add(a);
+		for(Vertice<T> ady : vertices) { // va a travéz de los nodos adyacentes y toma el primero que soporte mas que cero kg
+			Boolean mayCero = aristas.stream()
+									.filter( a1 -> a1.getInicio().equals(ady) && a1.getFin().equals(a) )
+									.filter( a1 -> (int)a1.getValor()>0).count() > 0;
+			if(!mayCero) {
+				return result;
+			}
+			if(encontrarCamino(ady, b).contains(b)) {
+				result.addAll(encontrarCamino(ady, b));
+				return result;
+			}
+		}	
+		return null;		
+	}
+	
+	public Double[][] grafoMatrizAdyacente() {
+		Double[][] result = new Double[AppEmpresa.maxPlantas][AppEmpresa.maxPlantas];
+		for(int i=0; i<this.vertices.size(); i++) 
+			for(int j=0; j<this.vertices.size(); j++)
+				result[i][j] = Double.POSITIVE_INFINITY;
+				
+		for(int i=0; i<this.vertices.size(); i++) {
+			for(int j=0; j<this.vertices.size(); j++) {
+				Integer i2 = i;
+				Integer j2 = j;
+				Double peso = aristas.stream()
+									.filter( a1 -> a1.getInicio().equals(vertices.get(i2)) && a1.getFin().equals(vertices.get(j2)) )
+									.mapToDouble( a1 -> (int)a1.getValor() )
+									.sum();
+				result[i][j] = peso;
+			}
+		}
+		return result;
+	}
+	
+	public Double[][] floyd() {
+		Double[][] result = this.grafoMatrizAdyacente();
+		for(int k=0; k<this.vertices.size(); k++)
+		for(int i=0; i<this.vertices.size(); i++)
+			if(result[i][k]!=Double.POSITIVE_INFINITY)
+			for(int j=0; j<this.vertices.size(); j++)
+				if(result[k][j]!=Double.POSITIVE_INFINITY)
+					result[i][j]=Math.min(result[i][j], result[i][k]+result[k][j]);
+		
+		return result;
+	}
 
 	public List<Arista<T>> getAristas() {
 		return aristas;

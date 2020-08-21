@@ -1,6 +1,5 @@
 package Musso.Tp_Integrador.modelo;
 
-import java.io.ObjectInputStream.GetField;
 import java.util.*;
 
 public class Planta extends Vertice<Planta> {
@@ -43,6 +42,12 @@ public class Planta extends Vertice<Planta> {
 
 	public void setId_planta(Integer id_planta) {
 		this.id_planta = id_planta;
-	}   
+	}
+
+	@Override
+	public String toString() {
+		return "Planta [nombre=" + nombre + ", id_planta=" + id_planta + "]";
+	}
+	
 
 }

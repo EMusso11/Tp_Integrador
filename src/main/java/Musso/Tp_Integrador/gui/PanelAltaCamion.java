@@ -14,36 +14,40 @@ public class PanelAltaCamion extends JPanel {
 
 	public void armarPanel() {
 		
-		this.setBackground(Color.lightGray);
+		this.setBackground(Color.BLACK);
 		
 		JComponent labelPresentacion = new JLabel("Alta Camion");
 		labelPresentacion.setFont(new Font("Calibri", Font.BOLD, 24));
-		labelPresentacion.setForeground(Color.BLUE);
+		labelPresentacion.setForeground(Color.ORANGE);
 		
 		JComponent labelPatente = new JLabel("Patente");
 		labelPatente.setFont(new Font("Calibri", Font.ITALIC, 18));
+		labelPatente.setForeground(Color.WHITE);
 		JTextField textPatente = new JTextField("AA 000 AA", 10);
-//		textPatente.setSize();
 		
 		JComponent labelMarca = new JLabel("Marca - Modelo");
 		labelMarca.setFont(new Font("Calibri", Font.ITALIC, 18));
+		labelMarca.setForeground(Color.WHITE);
 		JTextField textMarca = new JTextField(10);
 		JTextField textModelo = new JTextField(10);
 		
 		JComponent labelKm = new JLabel("Kilometraje");
 		labelKm.setFont(new Font("Calibri", Font.ITALIC, 18));
+		labelKm.setForeground(Color.WHITE);
 		JTextField textKm = new JTextField(5);
 		
 		JComponent labelCostoPorKm = new JLabel("Costo por Km");
 		labelCostoPorKm.setFont(new Font("Calibri", Font.ITALIC, 18));
+		labelCostoPorKm.setForeground(Color.WHITE);
 		JTextField textCostoPorKm = new JTextField(5);
 		
 		JComponent labelCostoPorHora = new JLabel("Costo por Hora");
 		labelCostoPorHora.setFont(new Font("Calibri", Font.ITALIC, 18));
+		labelCostoPorHora.setForeground(Color.WHITE);
 		JTextField textCostoPorHora = new JTextField(5);
 		
-		Integer[] dias = new Integer[30];
-		for(int i=1; i<30; i++) dias[i-1] = i;
+		Integer[] dias = new Integer[31];
+		for(int i=1; i<=31; i++) dias[i-1] = i;
 		String[] meses = { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio",
 							"Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" };
 		Integer[] años = new Integer[31];
@@ -51,14 +55,20 @@ public class PanelAltaCamion extends JPanel {
 		
 		JComponent labelDia = new JLabel("Dia");
 		labelDia.setFont(new Font("Calibri", Font.ITALIC, 18));
+		labelDia.setForeground(Color.WHITE);
 		JComboBox<Integer> boxFechaCompraDia = new JComboBox<Integer>(dias);
 		JComponent labelMes = new JLabel("Mes");
 		labelMes.setFont(new Font("Calibri", Font.ITALIC, 18));
+		labelMes.setForeground(Color.WHITE);
 		JComboBox<String> boxFechaCompraMes = new JComboBox<String>(meses);
 		JComponent labelAño = new JLabel("Año");
 		labelAño.setFont(new Font("Calibri", Font.ITALIC, 18));
+		labelAño.setForeground(Color.WHITE);
 		JComboBox<Integer> boxFechaCompraAño = new JComboBox<Integer>(años);
 		
+		JComponent buttonAñadir = new JButton("Añadir");
+		JComponent buttonCancelar = new JButton("Cancelar");
+				
 		
 		FlowLayout flw = new FlowLayout();
 		this.setLayout(flw);
@@ -81,6 +91,8 @@ public class PanelAltaCamion extends JPanel {
 		this.add(boxFechaCompraMes);
 		this.add(labelAño);
 		this.add(boxFechaCompraAño);
+		this.add(buttonAñadir);
+		this.add(buttonCancelar);
 		this.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 	}
 }
