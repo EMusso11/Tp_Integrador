@@ -10,20 +10,23 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import Musso.Tp_Integrador.AppEmpresa;
+import Musso.Tp_Integrador.modelo.Insumo;
 import Musso.Tp_Integrador.modelo.Planta;
 
-public class PanelAñadirInsumo2 extends JPanel {
+public class PanelAñadirStockDeInsumo2 extends JPanel {
 
 	private JPanel panelInsumo;
 
-	public PanelAñadirInsumo2(List<Planta> plantas, JFrame frame){
+	public PanelAñadirStockDeInsumo2(AppEmpresa appE, JFrame frame){
 		super();
-		this.armarPanel(plantas, frame);
+		this.armarPanel(appE, frame);
 	}
 	
-	public void armarPanel(List<Planta> plantas, JFrame frame) {
+	public void armarPanel(AppEmpresa appE, JFrame frame) {
+		
 		this.setBackground(Color.BLACK);
-		JComponent labelPresentacion = new JLabel("Añadir Insumo");
+		JComponent labelPresentacion = new JLabel("AÑADIR INSUMO");
 		labelPresentacion.setFont(new Font("Calibri", Font.BOLD, 24));
 		labelPresentacion.setForeground(Color.ORANGE);
 		
@@ -31,13 +34,13 @@ public class PanelAñadirInsumo2 extends JPanel {
 		JButton buttonCancelar = new JButton("Cancelar");
 		
 		buttonCancelar.addActionListener( a -> {
-			frame.setContentPane(panelInsumo = new PanelAñadirInsumo(plantas, frame));
+			frame.setContentPane(panelInsumo = new PanelAñadirStockDeInsumo(appE, frame));
 			frame.revalidate();
 			frame.repaint();
 		});
 		
 		buttonAñadir.addActionListener( a -> {
-			frame.setContentPane(panelInsumo = new PanelAñadirInsumo3(frame));
+			frame.setContentPane(panelInsumo = new PanelAñadirStockDeInsumo3(appE, frame));
 			frame.revalidate();
 			frame.repaint();
 		});

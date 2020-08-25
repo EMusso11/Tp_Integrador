@@ -27,7 +27,7 @@ public class PanelAñadirRuta extends JPanel {
 	public void armarPanel(List<Planta> plantas) {
 
 		this.setBackground(Color.BLACK);
-		JComponent labelPresentacion = new JLabel("Añadir nueva ruta");
+		JComponent labelPresentacion = new JLabel("AÑADIR NUEVA RUTA");
 		labelPresentacion.setFont(new Font("Calibri", Font.BOLD, 24));
 		labelPresentacion.setForeground(Color.ORANGE);
 		

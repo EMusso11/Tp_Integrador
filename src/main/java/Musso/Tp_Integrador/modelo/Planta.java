@@ -2,13 +2,15 @@ package Musso.Tp_Integrador.modelo;
 
 import java.util.*;
 
+import Musso.Tp_Integrador.modelo.Insumo.UnidadInsumo;
+
 public class Planta extends Vertice<Planta> {
 
     private String nombre;
     private Integer id_planta;
 
     private List<Camion> camiones;
-    private Map<Integer, Stock> productos; // la clave es el id_producto
+    private Map<Integer, Stock> productos; // la clave es el id del producto
 
     public Planta() {}
     
@@ -19,9 +21,9 @@ public class Planta extends Vertice<Planta> {
 //        this.productos= new Map<Integer, Stock>();
     }
     
-    public void registrarStock(Producto producto, Integer id_insumo, String unidad, Double cantidad, Planta puntoDePedido) {
-    	Stock s = new Stock(id_insumo, unidad, cantidad, puntoDePedido);
-    	productos.put(producto.getId(), s);
+    public void registrarStock(Insumo insumo, Double cantidad, Double cantidadMinima, Planta puntoDePedido) {
+    	Stock s = new Stock(insumo, cantidad, cantidadMinima, puntoDePedido);
+    	productos.put(productos.size(), s);
     }
     
     public Planta getValor() {
@@ -46,7 +48,7 @@ public class Planta extends Vertice<Planta> {
 
 	@Override
 	public String toString() {
-		return "Planta [nombre=" + nombre + ", id_planta=" + id_planta + "]";
+		return nombre;
 	}
 	
 

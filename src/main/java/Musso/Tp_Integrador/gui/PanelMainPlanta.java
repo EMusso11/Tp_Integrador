@@ -5,25 +5,24 @@ import java.util.*;
 import java.util.List;
 import javax.swing.*;
 
+import Musso.Tp_Integrador.AppEmpresa;
 import Musso.Tp_Integrador.modelo.Grafo;
 import Musso.Tp_Integrador.modelo.GrafoPlantas;
 import Musso.Tp_Integrador.modelo.Planta;
 
 public class PanelMainPlanta extends JPanel {
 
-	private JButton button = new JButton("AAA");
 	
-	public PanelMainPlanta() {
+	public PanelMainPlanta(AppEmpresa appE) {
 		super();
-		this.armarPanel();
+		this.armarPanel(appE);
 	}
 
 
-	public void armarPanel() {
+	public void armarPanel(AppEmpresa appE) {
 		
-		this.setBackground(Color.BLACK);
-		
-		JLabel labelPresentacion = new JLabel("Plantas");
+		this.setBackground(Color.BLACK);		
+		JLabel labelPresentacion = new JLabel("PLANTAS");
 		labelPresentacion.setFont(new Font("Calibri", Font.BOLD, 24));
 		labelPresentacion.setForeground(Color.ORANGE);
 		
@@ -48,12 +47,7 @@ public class PanelMainPlanta extends JPanel {
 		
 		
 	
-		
-		FlowLayout flw = new FlowLayout();
-		this.setLayout(flw);
 		this.add(labelPresentacion);
-//		this.add(tablePlantas);
-		this.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 	}
 	
 }

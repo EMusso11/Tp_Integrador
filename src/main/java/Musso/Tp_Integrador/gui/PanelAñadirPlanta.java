@@ -21,7 +21,7 @@ public class PanelAñadirPlanta extends JPanel {
 	public void armarPanel() {
 
 		this.setBackground(Color.BLACK);
-		JComponent labelPresentacion = new JLabel("Agregar nueva planta");
+		JComponent labelPresentacion = new JLabel("AÑADIR NUEVA PLANTA");
 		labelPresentacion.setFont(new Font("Calibri", Font.BOLD, 24));
 		labelPresentacion.setForeground(Color.ORANGE);
 		

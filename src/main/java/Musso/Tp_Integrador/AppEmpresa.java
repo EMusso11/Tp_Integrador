@@ -1,5 +1,6 @@
 package Musso.Tp_Integrador;
 
+import java.awt.LayoutManager;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.function.Predicate;
@@ -12,8 +13,9 @@ public class AppEmpresa {
 	
 	public static final int maxPlantas = 30; //define la maxima cant de plantas para la cual esta diseñado el sistema
 
-    private  GrafoPlantas grafo = new GrafoPlantas();
+    private GrafoPlantas grafo = new GrafoPlantas();
     private List<Camion> camiones;
+    private List<Insumo> insumos;
     
     public AppEmpresa() {
     	Planta p = new Planta("Puerto acopio", 0);
@@ -195,6 +197,14 @@ public class AppEmpresa {
 
 	public List<Planta> getPlantas() {
 		return grafo.getPlantas();
+	}
+
+	public List<Insumo> getInsumos() {
+		return this.insumos;
+	}
+
+	public void addInsumo(Insumo insumo) {
+		this.insumos.add(insumo);		
 	}
 
     

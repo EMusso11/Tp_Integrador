@@ -12,10 +12,8 @@ import Musso.Tp_Integrador.modelo.Ruta;
 public class App {
 	
 	private JFrame frame;
-	private JPanel panelMainPlanta;
-	private JPanel panelMainCamion;
+	private JPanel menuPrincipal;
 	private JMenuBar menuBar;
-	private JTabbedPane tab;
 	private JMenu menuArchivo;
 	private JMenuItem menuItemSalir;
 	private JMenu menuCamion;
@@ -27,9 +25,14 @@ public class App {
 	private JMenu menuPlanta;
 	private JMenuItem menuItemAñadirPlanta;
 	private JMenuItem menuItemInfoPlanta;
+	private JMenuItem menuItemAñadirStockDeInsumo;
+	private JMenu menuInsumo;
 	private JMenuItem menuItemAñadirInsumo;
+	private JMenuItem menuItemBajaInsumo;
+	private JMenuItem menuItemVisualizarInsumo;
 	private JPanel panelCamion;
 	private JPanel panelPlanta;
+	private JPanel panelStockDeInsumo;
 	private JPanel panelInsumo;
 	
 	public static void main(String[] args) {
@@ -71,17 +74,11 @@ public class App {
 		
 		this.frame = new JFrame("Empresa XXX");
 		this.frame.setBackground(Color.BLACK);
-		this.frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		this.frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);		
+		
+		this.menuPrincipal = new MenuPrincipal(appE, frame);
 		
 		this.menuBar = new JMenuBar();
-		
-		
-//		TODO en el panel principal muestro info de las plantas en forma de tabla
-		this.tab = new JTabbedPane();
-		this.tab.addTab("Plantas", panelMainPlanta = new PanelMainPlanta());
-		this.tab.addTab("Camiones", panelMainCamion = new PanelMainCamion(appE.getCamiones()));
-		this.frame.add(tab);
-		
 		this.menuArchivo = new JMenu("File");
 		this.menuItemSalir = new JMenuItem("Salir");
 		this.menuItemSalir.addActionListener( e -> System.exit(0));
@@ -111,13 +108,12 @@ public class App {
 			this.frame.repaint();
 		});
 //		----------------------------------------------------------------
-		this.menuCamion.add(menuItemAltaCamion); //agrego
+		this.menuCamion.add(menuItemAltaCamion);
 		this.menuCamion.add(menuItemBajaCamion);
 		this.menuCamion.add(menuItemBuscarCamion);
 		
 		this.menuPlanta = new JMenu("Planta");
 //		---------------------------------------------------------------- Planta
-		// TODO PLANTA ORIGEN Y DESTINO VAN A SER COMBOBOX
 		this.menuItemAñadirPlanta = new JMenuItem("Añadir Planta");
 		this.menuItemAñadirPlanta.addActionListener( a -> {
 			this.frame.setContentPane(panelPlanta = new PanelAñadirPlanta());
@@ -132,28 +128,57 @@ public class App {
 			this.frame.repaint();
 		});
 //		----------------------------------------------------------------
-		this.menuItemAñadirInsumo = new JMenuItem("Añadir Insumo");
-		this.menuItemAñadirInsumo.addActionListener( a -> {
-			this.frame.setContentPane(panelInsumo = new PanelAñadirInsumo(appE.getPlantas(), this.frame));
+		this.menuItemAñadirStockDeInsumo = new JMenuItem("Añadir Stock de Insumo");
+		this.menuItemAñadirStockDeInsumo.addActionListener( a -> {
+			this.frame.setContentPane(panelStockDeInsumo = new PanelAñadirStockDeInsumo(appE, this.frame));
 			this.frame.revalidate();
 			this.frame.repaint();
 		});
-//		----------------------------------------------------------------					
+//		----------------------------------------------------------------
 		this.menuPlanta.add(menuItemAñadirPlanta);
-		this.menuPlanta.add(menuItemAñadirInsumo);
+		this.menuPlanta.add(menuItemAñadirStockDeInsumo);
+		
+		this.menuInsumo = new JMenu("Insumo");
+//		---------------------------------------------------------------- Insumo
+		this.menuItemAñadirInsumo = new JMenuItem("Añadir Insumo");
+		this.menuItemAñadirInsumo.addActionListener( a -> {
+			this.frame.setContentPane(panelInsumo = new PanelAñadirInsumo(appE, frame, 0.0)); //TODO funcion peso
+			this.frame.revalidate();
+			this.frame.repaint();
+		});
+		
+		this.menuItemBajaInsumo = new JMenuItem("Baja Insumo");
+		this.menuItemBajaInsumo.addActionListener( a -> {
+			this.frame.setContentPane(panelInsumo = new PanelBajaInsumo(frame, appE.getInsumos()));
+			this.frame.revalidate();
+			this.frame.repaint();
+		});
+		
+		this.menuItemVisualizarInsumo = new JMenuItem("Ver Insumos");
+		this.menuItemVisualizarInsumo.addActionListener( a -> {
+			this.frame.setContentPane(panelInsumo = new PanelVisualizarInsumo(frame));
+			this.frame.revalidate();
+			this.frame.repaint();
+		});
+		
+		this.menuInsumo.add(menuItemAñadirInsumo);
+		this.menuInsumo.add(menuItemBajaInsumo);
+		this.menuInsumo.add(menuItemVisualizarInsumo);
 		
 		this.menuBar.add(menuArchivo);
 		this.menuBar.add(menuCamion);
 		this.menuBar.add(menuPlanta);
-		this.frame.setJMenuBar(menuBar);
+		this.menuBar.add(menuInsumo);
 
+		
+		this.frame.setJMenuBar(menuBar);
 		this.frame.pack();
 //		this.frame.setSize(800, 600);
-		this.frame.setExtendedState(JFrame.MAXIMIZED_BOTH); // abre en pantalla completa
-//		this.frame.setUndecorated(true);
+		this.frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.frame.setVisible(true);
-		
 //		----------------------------------------------------------------
+		
+
 		
 	}
 	

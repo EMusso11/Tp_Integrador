@@ -16,7 +16,7 @@ public class PanelAltaCamion extends JPanel {
 		
 		this.setBackground(Color.BLACK);
 		
-		JComponent labelPresentacion = new JLabel("Alta Camion");
+		JComponent labelPresentacion = new JLabel("ALTA CAMION");
 		labelPresentacion.setFont(new Font("Calibri", Font.BOLD, 24));
 		labelPresentacion.setForeground(Color.ORANGE);
 		
