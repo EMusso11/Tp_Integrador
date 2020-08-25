@@ -47,8 +47,7 @@ public class PanelAñadirInsumo extends JPanel {
 
 		boxTiposInsumos.addItem("General");
 		boxTiposInsumos.addItem("Liquido");
-		
-		
+				
 		JButton buttonSeleccionar = new JButton("Seleccionar");
 
 		buttonSeleccionar.addActionListener( a -> { 
@@ -58,12 +57,12 @@ public class PanelAñadirInsumo extends JPanel {
 			
 			switch(itemSeleccionado) {
 			case "General":
-				frame.setContentPane(panelInsumoGeneral = new PanelAñadirInsumoGeneral(appE, frame, nombre));
+				frame.setContentPane(panelInsumoGeneral = new PanelAñadirInsumoGeneral(appE, frame));
 				frame.revalidate();
 				frame.repaint();
 				break;
 			case "Liquido":
-				frame.setContentPane(panelInsumoLiquido = new PanelAñadirInsumoLiquido(frame, peso, nombre));
+				frame.setContentPane(panelInsumoLiquido = new PanelAñadirInsumoLiquido(appE, frame));
 				frame.revalidate();
 				frame.repaint();
 				break;

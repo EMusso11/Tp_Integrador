@@ -3,13 +3,21 @@ package Musso.Tp_Integrador.modelo;
 import java.time.LocalDate;
 
 public class Camion {
-    private String patente;
+   
+	private String patente;
     private String marca;
     private String modelo;
     private Double kilometraje;
     private Double costoPorKm;
     private Double costoPorHora;
     private LocalDate fechaCompra;
+    
+
+	public Camion() {}
+	
+	public Camion(String patente) {
+		this.patente = patente;
+	}
 
     public Camion(String patente, String marca, String modelo,
 			Double kilometraje, Double costoPorKm, Double costoPorHora,
@@ -22,8 +30,6 @@ public class Camion {
     	this.costoPorHora = costoPorHora;
     	this.fechaCompra = fechaCompra;
     }
-
-	public Camion() {}
 
 	public String getPatente() {
 		return patente;
@@ -81,7 +87,10 @@ public class Camion {
 		this.fechaCompra = fechaCompra;
 	}
     
-      
-    
+	@Override
+	public String toString() {
+		return "Camion [patente=" + patente + "]";
+	}
+   
 
 }

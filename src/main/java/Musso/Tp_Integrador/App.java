@@ -12,28 +12,29 @@ import Musso.Tp_Integrador.modelo.Ruta;
 public class App {
 	
 	private JFrame frame;
-	private JPanel menuPrincipal;
-	private JMenuBar menuBar;
-	private JMenu menuArchivo;
-	private JMenuItem menuItemSalir;
-	private JMenu menuCamion;
-	private JMenuItem menuItemCamion;
-	private JMenuItem menuItemAltaCamion;
-	private JMenuItem menuItemBajaCamion;
-	private JMenuItem menuItemBuscarCamion;
-	private JMenuItem menuItemVisualizarCamion;
-	private JMenu menuPlanta;
-	private JMenuItem menuItemAñadirPlanta;
-	private JMenuItem menuItemInfoPlanta;
-	private JMenuItem menuItemAñadirStockDeInsumo;
-	private JMenu menuInsumo;
-	private JMenuItem menuItemAñadirInsumo;
-	private JMenuItem menuItemBajaInsumo;
-	private JMenuItem menuItemVisualizarInsumo;
-	private JPanel panelCamion;
-	private JPanel panelPlanta;
-	private JPanel panelStockDeInsumo;
-	private JPanel panelInsumo;
+	private MenuPrincipal menuPrincipal;
+//	private JPanel menuPrincipal;
+//	private JMenuBar menuBar;
+//	private JMenu menuArchivo;
+//	private JMenuItem menuItemSalir;
+//	private JMenu menuCamion;
+//	private JMenuItem menuItemCamion;
+//	private JMenuItem menuItemAltaCamion;
+//	private JMenuItem menuItemBajaCamion;
+//	private JMenuItem menuItemBuscarCamion;
+//	private JMenuItem menuItemVisualizarCamion;
+//	private JMenu menuPlanta;
+//	private JMenuItem menuItemAñadirPlanta;
+//	private JMenuItem menuItemInfoPlanta;
+//	private JMenuItem menuItemAñadirStockDeInsumo;
+//	private JMenu menuInsumo;
+//	private JMenuItem menuItemAñadirInsumo;
+//	private JMenuItem menuItemBajaInsumo;
+//	private JMenuItem menuItemVisualizarInsumo;
+//	private JPanel panelCamion;
+//	private JPanel panelPlanta;
+//	private JPanel panelStockDeInsumo;
+//	private JPanel panelInsumo;
 	
 	public static void main(String[] args) {
 		App app = new App();
@@ -72,110 +73,15 @@ public class App {
 			e1.printStackTrace();
 		}
 		
-		this.frame = new JFrame("Empresa XXX");
-		this.frame.setBackground(Color.BLACK);
-		this.frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);		
+		frame = new JFrame("Empresa XXX");
+		frame.setBackground(Color.BLACK);
+		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);		
 		
-		this.menuPrincipal = new MenuPrincipal(appE, frame);
+		menuPrincipal = new MenuPrincipal(appE, frame);
 		
-		this.menuBar = new JMenuBar();
-		this.menuArchivo = new JMenu("File");
-		this.menuItemSalir = new JMenuItem("Salir");
-		this.menuItemSalir.addActionListener( e -> System.exit(0));
-		this.menuArchivo.add(menuItemSalir);
-		
-		this.menuCamion = new JMenu("Camion");
-//		---------------------------------------------------------------- Camion
-		this.menuItemAltaCamion = new JMenuItem("Alta Camion");
-		this.menuItemAltaCamion.addActionListener( a -> {
-//			SIEMPRE VINCULAR CON FRAME
-			this.frame.setContentPane(panelCamion = new PanelAltaCamion());
-			this.frame.revalidate();
-			this.frame.repaint();
-		});
-//		----------------------------------------------------------------
-		this.menuItemBajaCamion = new JMenuItem("Baja Camion");
-		this.menuItemBajaCamion.addActionListener( a -> {
-			this.frame.setContentPane(panelCamion = new PanelBajaCamion());
-			this.frame.revalidate();
-			this.frame.repaint();
-		});
-//		----------------------------------------------------------------
-		this.menuItemBuscarCamion = new JMenuItem("Buscar Camion");
-		this.menuItemBuscarCamion.addActionListener( a -> {
-			this.frame.setContentPane(panelCamion = new PanelBuscarCamion());
-			this.frame.revalidate();
-			this.frame.repaint();
-		});
-//		----------------------------------------------------------------
-		this.menuCamion.add(menuItemAltaCamion);
-		this.menuCamion.add(menuItemBajaCamion);
-		this.menuCamion.add(menuItemBuscarCamion);
-		
-		this.menuPlanta = new JMenu("Planta");
-//		---------------------------------------------------------------- Planta
-		this.menuItemAñadirPlanta = new JMenuItem("Añadir Planta");
-		this.menuItemAñadirPlanta.addActionListener( a -> {
-			this.frame.setContentPane(panelPlanta = new PanelAñadirPlanta());
-			this.frame.revalidate();
-			this.frame.repaint();
-		});
-//		----------------------------------------------------------------
-		this.menuItemAñadirPlanta = new JMenuItem("Añadir Ruta");
-		this.menuItemAñadirPlanta.addActionListener( a -> {
-			this.frame.setContentPane(panelPlanta = new PanelAñadirRuta(appE.getGrafo().getPlantas()));
-			this.frame.revalidate();
-			this.frame.repaint();
-		});
-//		----------------------------------------------------------------
-		this.menuItemAñadirStockDeInsumo = new JMenuItem("Añadir Stock de Insumo");
-		this.menuItemAñadirStockDeInsumo.addActionListener( a -> {
-			this.frame.setContentPane(panelStockDeInsumo = new PanelAñadirStockDeInsumo(appE, this.frame));
-			this.frame.revalidate();
-			this.frame.repaint();
-		});
-//		----------------------------------------------------------------
-		this.menuPlanta.add(menuItemAñadirPlanta);
-		this.menuPlanta.add(menuItemAñadirStockDeInsumo);
-		
-		this.menuInsumo = new JMenu("Insumo");
-//		---------------------------------------------------------------- Insumo
-		this.menuItemAñadirInsumo = new JMenuItem("Añadir Insumo");
-		this.menuItemAñadirInsumo.addActionListener( a -> {
-			this.frame.setContentPane(panelInsumo = new PanelAñadirInsumo(appE, frame, 0.0)); //TODO funcion peso
-			this.frame.revalidate();
-			this.frame.repaint();
-		});
-		
-		this.menuItemBajaInsumo = new JMenuItem("Baja Insumo");
-		this.menuItemBajaInsumo.addActionListener( a -> {
-			this.frame.setContentPane(panelInsumo = new PanelBajaInsumo(frame, appE.getInsumos()));
-			this.frame.revalidate();
-			this.frame.repaint();
-		});
-		
-		this.menuItemVisualizarInsumo = new JMenuItem("Ver Insumos");
-		this.menuItemVisualizarInsumo.addActionListener( a -> {
-			this.frame.setContentPane(panelInsumo = new PanelVisualizarInsumo(frame));
-			this.frame.revalidate();
-			this.frame.repaint();
-		});
-		
-		this.menuInsumo.add(menuItemAñadirInsumo);
-		this.menuInsumo.add(menuItemBajaInsumo);
-		this.menuInsumo.add(menuItemVisualizarInsumo);
-		
-		this.menuBar.add(menuArchivo);
-		this.menuBar.add(menuCamion);
-		this.menuBar.add(menuPlanta);
-		this.menuBar.add(menuInsumo);
-
-		
-		this.frame.setJMenuBar(menuBar);
-		this.frame.pack();
-//		this.frame.setSize(800, 600);
-		this.frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		this.frame.setVisible(true);
+//		frame.pack();
+		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		frame.setVisible(true);
 //		----------------------------------------------------------------
 		
 

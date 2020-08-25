@@ -48,14 +48,11 @@ public class PanelAñadirRuta extends JPanel {
 		labelPlantaDestino.setForeground(Color.WHITE);
 		JComboBox<String> boxPlantaDestino = new JComboBox<String>(plantasBox);
 		
-	
-		FlowLayout flw = new FlowLayout();
-		this.setLayout(flw);
+
 		this.add(labelPresentacion);
 		this.add(labelPlantaOrigen);
 		this.add(boxPlantaOrigen);
 		this.add(labelPlantaDestino);
 		this.add(boxPlantaDestino);
-		this.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 	}
 }

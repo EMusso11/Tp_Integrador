@@ -2,7 +2,9 @@ package Musso.Tp_Integrador.modelo;
 
 public class InsumoGeneral extends Insumo{
 
-    public InsumoGeneral(Integer id, UnidadInsumo unidad, String nombre) {
+	public InsumoGeneral() {}
+	
+	public InsumoGeneral(Integer id, UnidadInsumo unidad, String nombre) {
 		super(id, unidad, nombre);
 	}
 
@@ -12,5 +14,15 @@ public class InsumoGeneral extends Insumo{
     public Double pesoPorUnidad() {
        return peso;
     }
+
+	@Override
+	public void setDensidad(Double densidad) {
+		return;
+	}
+
+	@Override
+	public void setPeso(Double peso) {
+		this.peso = peso;
+	}
     
 }

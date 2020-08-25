@@ -47,6 +47,10 @@ public class AppEmpresa {
     	Camion c = new Camion(patente, marca, modelo, kilometraje, costoPorKm, costoPorHora, fechaCompra);
     	camiones.add(c);
     }
+	
+	public void altaCamion(Camion c) {
+		this.camiones.add(c);
+	}
     
     public void editarCamion() {
     	
@@ -204,10 +208,8 @@ public class AppEmpresa {
 	}
 
 	public void addInsumo(Insumo insumo) {
-		this.insumos.add(insumo);		
-	}
-
-    
+		this.insumos.add(insumo);
+	}  
     
     
     /*

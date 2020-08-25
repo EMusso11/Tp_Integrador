@@ -1,12 +1,14 @@
 package Musso.Tp_Integrador.modelo;
 
 public class InsumoLiquido extends Insumo {
+	
+	private Double densidad;
+	
+	public InsumoLiquido() {}
     
     public InsumoLiquido(Integer id, UnidadInsumo unidad, String nombre) {
 		super(id, unidad, nombre);
-	}
-
-	private Double densidad;
+    }
     
     @Override
 	public Double pesoPorUnidad() {
@@ -18,7 +20,24 @@ public class InsumoLiquido extends Insumo {
     	case LITRO:
     		return densidad / 1000;
 		default:
-			return null;
+			return 0.0;
     	}
     }
+    
+    public Double getDensidad() {
+    	return this.densidad;
+    }
+
+	@Override
+	public void setDensidad(Double densidad) {
+		this.densidad = densidad;
+	}
+
+	@Override
+	public void setPeso(Double peso) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
 }

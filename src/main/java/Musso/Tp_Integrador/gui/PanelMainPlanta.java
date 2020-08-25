@@ -13,13 +13,13 @@ import Musso.Tp_Integrador.modelo.Planta;
 public class PanelMainPlanta extends JPanel {
 
 	
-	public PanelMainPlanta(AppEmpresa appE) {
+	public PanelMainPlanta(AppEmpresa appE, JFrame frame) {
 		super();
-		this.armarPanel(appE);
+		this.armarPanel(appE, frame);
 	}
 
 
-	public void armarPanel(AppEmpresa appE) {
+	public void armarPanel(AppEmpresa appE, JFrame frame) {
 		
 		this.setBackground(Color.BLACK);		
 		JLabel labelPresentacion = new JLabel("PLANTAS");
