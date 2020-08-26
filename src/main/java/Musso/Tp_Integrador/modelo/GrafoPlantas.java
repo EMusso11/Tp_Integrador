@@ -2,10 +2,15 @@ package Musso.Tp_Integrador.modelo;
 
 import java.util.*;
 
+import Musso.Tp_Integrador.AppEmpresa;
+
 public class GrafoPlantas extends Grafo<Planta> {
 	
-	List<Ruta> rutas;
-	List<Planta> plantas;
+	private List<Ruta> rutas;
+	private List<Planta> plantas;
+	private PageRank pageRank;
+	
+	private Double[] linkSum;
 	
 	public GrafoPlantas() {
 		super();
@@ -28,13 +33,11 @@ public class GrafoPlantas extends Grafo<Planta> {
     	this.conectar(ruta.getPlantaOrigen(), ruta.getPlantaDestino(), ruta.getDistancia(), ruta.getDuracion(), ruta.getPesoMax());
     }
 	
-	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public Double flujoMaximo(Planta a, Planta b) {
 		Grafo tmp = this.grafoSimple();
 		return tmp.flujoMaximo(a, b);
 	}
-	
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+
 	public Grafo grafoSimple() {
 		Grafo g = new Grafo();
 		for(Planta p : this.plantas) {
@@ -46,6 +49,34 @@ public class GrafoPlantas extends Grafo<Planta> {
 		return g;
 	}
 	
+	public List<Double> pageRank(AppEmpresa appE) {
+		List<Double> lista = new ArrayList<Double>();
+		
+		pageRank = new PageRank(appE);
+		linkSum = new Double[AppEmpresa.MAX_PLANTAS];
+		for(int i=0; i<this.getPlantas().size(); i++) {
+			linkSum[i] = Double.valueOf(this.gradoSalida(this.getPlantas().get(i)));
+		}
+		pageRank.calcular(this.toMatrix(), linkSum);
+		
+		for(Double pr : pageRank.getPagerank()) {
+			lista.add(pr);
+		}
+		
+		return lista;
+	}
+	
+	public Double[][] toMatrix() {
+		Double[][] matriz = new Double[AppEmpresa.MAX_PLANTAS][AppEmpresa.MAX_PLANTAS];
+		
+		for(int i=0; i<plantas.size(); i++) {
+			for(int j=0; j<plantas.size(); j++) {
+				matriz[i][j] = 1.0;
+			}
+		}
+		
+		return matriz;
+	}
 	
 //	public List<Planta> pageRankPlantas() {
 //		Double exact = 0.25; // cuando corto
@@ -117,12 +148,12 @@ public class GrafoPlantas extends Grafo<Planta> {
 //		}	
 //		
 //	}
-	
-	public Boolean esColgante(Planta unaPlanta) {
-		if(this.gradoSalida(unaPlanta)==0)
-			return true;
-		return false;
-	}
+//	
+//	public Boolean esColgante(Planta unaPlanta) {
+//		if(this.gradoSalida(unaPlanta)==0)
+//			return true;
+//		return false;
+//	}
 	
 
 	

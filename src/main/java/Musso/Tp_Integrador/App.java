@@ -2,44 +2,30 @@ package Musso.Tp_Integrador;
 
 import java.awt.Color;
 import java.awt.MenuBar;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.*;
 
 import Musso.Tp_Integrador.gui.*;
+import Musso.Tp_Integrador.modelo.Camion;
 import Musso.Tp_Integrador.modelo.GrafoPlantas;
+import Musso.Tp_Integrador.modelo.Insumo;
+import Musso.Tp_Integrador.modelo.InsumoGeneral;
+import Musso.Tp_Integrador.modelo.OrdenDePedido;
 import Musso.Tp_Integrador.modelo.Planta;
 import Musso.Tp_Integrador.modelo.Ruta;
+import Musso.Tp_Integrador.modelo.OrdenDePedido.EstadoOrden;
 
 public class App {
 	
 	private JFrame frame;
 	private MenuPrincipal menuPrincipal;
-//	private JPanel menuPrincipal;
-//	private JMenuBar menuBar;
-//	private JMenu menuArchivo;
-//	private JMenuItem menuItemSalir;
-//	private JMenu menuCamion;
-//	private JMenuItem menuItemCamion;
-//	private JMenuItem menuItemAltaCamion;
-//	private JMenuItem menuItemBajaCamion;
-//	private JMenuItem menuItemBuscarCamion;
-//	private JMenuItem menuItemVisualizarCamion;
-//	private JMenu menuPlanta;
-//	private JMenuItem menuItemAñadirPlanta;
-//	private JMenuItem menuItemInfoPlanta;
-//	private JMenuItem menuItemAñadirStockDeInsumo;
-//	private JMenu menuInsumo;
-//	private JMenuItem menuItemAñadirInsumo;
-//	private JMenuItem menuItemBajaInsumo;
-//	private JMenuItem menuItemVisualizarInsumo;
-//	private JPanel panelCamion;
-//	private JPanel panelPlanta;
-//	private JPanel panelStockDeInsumo;
-//	private JPanel panelInsumo;
 	
 	public static void main(String[] args) {
 		App app = new App();
 		AppEmpresa appE = new AppEmpresa();
-		app.armarApp(appE);
 		
 //		-----------------test---------------------
 		appE.addPlanta("Planta1");
@@ -59,9 +45,20 @@ public class App {
 		appE.addRuta(r2);
 		appE.addRuta(r3);
 		appE.addRuta(r4);
-//		System.out.println("Exito. Rutas creadas.");
+		
+		System.out.println(appE.getGrafo().pageRank(appE));
+		
+//		Camion c1 = new Camion("AA 111 AA");
+//		Camion c2 = new Camion("BB 222 BB");
+//		Camion c3 = new Camion("CC 333 CC");
+//		appE.addCamion(c1);
+//		appE.addCamion(c2);
+//		appE.addCamion(c3);
+		
+		
 //		------------------------------------------
 		
+		app.armarApp(appE);
 	}
 
 	private void armarApp(AppEmpresa appE) {
@@ -75,11 +72,10 @@ public class App {
 		
 		frame = new JFrame("Empresa XXX");
 		frame.setBackground(Color.BLACK);
-		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);		
+		frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		
 		menuPrincipal = new MenuPrincipal(appE, frame);
 		
-//		frame.pack();
 		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		frame.setVisible(true);
 //		----------------------------------------------------------------

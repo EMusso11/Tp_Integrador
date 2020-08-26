@@ -238,7 +238,7 @@ public class Grafo<T> {
 	}
 	
 	public Double[][] grafoMatrizAdyacente() {
-		Double[][] result = new Double[AppEmpresa.maxPlantas][AppEmpresa.maxPlantas];
+		Double[][] result = new Double[AppEmpresa.MAX_PLANTAS][AppEmpresa.MAX_PLANTAS];
 		for(int i=0; i<this.vertices.size(); i++) 
 			for(int j=0; j<this.vertices.size(); j++)
 				result[i][j] = Double.POSITIVE_INFINITY;
