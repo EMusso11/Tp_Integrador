@@ -27,7 +27,7 @@ public class PanelAñadirInsumoLiquido extends JPanel {
 	private Double densidad;
 	private PanelAñadirInsumoLiquido panelInsumoLiquido;
 	private MenuPrincipal menuPrincipal;
-	private panelAñadirInsumoCorrecto panelAñadirInsumoLiquidoCorrecto;
+	private PanelAñadirInsumoCorrecto panelAñadirInsumoLiquidoCorrecto;
 	private Insumo insumo;
 
 	public PanelAñadirInsumoLiquido(AppEmpresa appE, JFrame frame) {
@@ -117,7 +117,7 @@ public class PanelAñadirInsumoLiquido extends JPanel {
 		JButton buttonAñadir = new JButton("Añadir");
 		buttonAñadir.addActionListener( a -> {
 			appE.addInsumo(insumo);
-			frame.setContentPane(panelAñadirInsumoLiquidoCorrecto = new panelAñadirInsumoCorrecto(appE, frame));
+			frame.setContentPane(panelAñadirInsumoLiquidoCorrecto = new PanelAñadirInsumoCorrecto(appE, frame));
 			frame.revalidate();
 			frame.repaint();
 		});

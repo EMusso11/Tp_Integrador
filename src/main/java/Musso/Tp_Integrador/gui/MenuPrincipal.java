@@ -32,8 +32,8 @@ public class MenuPrincipal extends JPanel {
 		
 //		TODO en el panel principal muestro info de las plantas en forma de tabla - CU06
 		JTabbedPane tabs = new JTabbedPane();
-		tabs.addTab("Plantas", panelMainPlanta = new PanelMainPlanta(appE, frame));
-		tabs.addTab("Camiones", panelMainCamion = new PanelMainCamion(appE, frame));
+		tabs.addTab("Info Plantas", panelMainPlanta = new PanelMainPlanta(appE, frame));
+		tabs.addTab("Info Camiones", panelMainCamion = new PanelMainCamion(appE, frame));
 		ImageIcon img1 = new ImageIcon("img/planta.png");
 		ImageIcon img2 = new ImageIcon("img/camion.png");
 		tabs.setIconAt(0, img1);

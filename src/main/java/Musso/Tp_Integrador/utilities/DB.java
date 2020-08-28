@@ -1,4 +1,4 @@
-package Musso.Tp_Integrador.Utils;
+package Musso.Tp_Integrador.utilities;
 
 import java.io.*;
 import java.sql.*;

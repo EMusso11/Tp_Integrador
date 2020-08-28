@@ -20,7 +20,7 @@ import Musso.Tp_Integrador.modelo.InsumoGeneral;
 
 public class PanelAñadirInsumoGeneral extends JPanel {
 
-	private panelAñadirInsumoCorrecto panelAñadirInsumoLiquidoCorrecto;
+	private PanelAñadirInsumoCorrecto panelAñadirInsumoLiquidoCorrecto;
 	private Insumo insumo;
 	private UnidadInsumo unidad;
 
@@ -76,19 +76,12 @@ public class PanelAñadirInsumoGeneral extends JPanel {
 		
 		JButton buttonAñadir = new JButton("Añadir");
 		buttonAñadir.addActionListener( a -> {
-			appE.addInsumo(insumo); // TODO resolver problema de herencia
+			appE.addInsumo(insumo);
 //			System.out.println("OK");
-			frame.setContentPane(panelAñadirInsumoLiquidoCorrecto = new panelAñadirInsumoCorrecto(appE, frame));
+			frame.setContentPane(panelAñadirInsumoLiquidoCorrecto = new PanelAñadirInsumoCorrecto(appE, frame));
 			frame.revalidate();
 			frame.repaint();
 		});
-		
-//		if(faltaDato) {
-//			throw new faltaDatoException();
-//		}
-		
-//		Insumo insumo = new Insumo(appE.getInsumos().size(), unidad, nombre);
-//		appE.addInsumo(insumo);
 		
 		this.add(labelPresentacion);
 		this.add(labelNombre);

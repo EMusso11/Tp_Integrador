@@ -3,6 +3,7 @@ package Musso.Tp_Integrador.modelo;
 public abstract class Insumo {
 
     public enum UnidadInsumo{ KG, CC, M, M2, M3, PIEZA, LITRO };
+    
     private Integer id_insumo;
     private String nombre;
     private String descripcion;
@@ -54,16 +55,6 @@ public abstract class Insumo {
 		this.id_insumo = id;
 	}
 
-	public Integer getId_insumo() {
-		return id_insumo;
-	}
-
-
-	public void setId_insumo(Integer id_insumo) {
-		this.id_insumo = id_insumo;
-	}
-
-
 	public String getDescripcion() {
 		return descripcion;
 	}
@@ -86,5 +77,7 @@ public abstract class Insumo {
 	public abstract void setDensidad(Double densidad);
 
 	public abstract void setPeso(Double peso);
+
+	public abstract String getTipo();
 	
 }

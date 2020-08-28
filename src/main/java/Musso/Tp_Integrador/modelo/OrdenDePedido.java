@@ -24,7 +24,7 @@ public class OrdenDePedido {
 		this.itemsSolicitados = itemsSolicitados;
 	}
 
-	public OrdenDePedido(Planta planta, LocalDate now, Integer nro) {
+	public OrdenDePedido(Planta planta, LocalDate fechaEntrega, Integer nro) {
 		this.plantaDestino = planta;
 		this.fechaEntrega = fechaEntrega;
 		this.nroDePedido = nro;		

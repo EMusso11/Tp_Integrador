@@ -143,10 +143,9 @@ public class PanelAñadirCamion extends JPanel {
 			}
 			
 			camion.setFechaCompra(LocalDate.of(dia, mes.getValue(), año));
-			System.out.println(camion.getPatente());
-			appE.addCamion(camion); //TODO arreglar camion
+			appE.addCamion(camion);
 			
-			frame.setContentPane(panelAñadirCamionCorrecto = new panelAñadirCamionCorrecto(appE, frame));
+			frame.setContentPane(panelAñadirCamionCorrecto = new PanelAñadirCamionCorrecto(appE, frame));
 			frame.revalidate();
 			frame.repaint();		
 		});

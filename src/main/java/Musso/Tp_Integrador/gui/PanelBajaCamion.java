@@ -41,7 +41,7 @@ public class PanelBajaCamion extends JPanel {
 		try {
 			boxCamiones = new JComboBox<Camion>();
 			for(Camion c : appE.getCamiones()) {
-				boxCamiones.addItem(c);
+				boxCamiones.removeItem(c);
 			}
 		} catch(NullPointerException ex) {
 			JOptionPane.showMessageDialog(frame, "No hay camiones añadidos hasta el momento.", "ALERTA", JOptionPane.WARNING_MESSAGE);
@@ -59,9 +59,9 @@ public class PanelBajaCamion extends JPanel {
 		});
 		
 		
-		frame.add(labelPresentacion);
-		frame.add(labelSeleccionar);
-		frame.add(boxCamiones);
-		frame.add(buttonEliminar);
+		this.add(labelPresentacion);
+		this.add(labelSeleccionar);
+		this.add(boxCamiones);
+		this.add(buttonEliminar);
 	}
 }

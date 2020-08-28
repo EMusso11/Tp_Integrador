@@ -11,11 +11,11 @@ import javax.swing.JPanel;
 
 import Musso.Tp_Integrador.AppEmpresa;
 
-public class panelAñadirCamionCorrecto extends JPanel {
+public class PanelAñadirCamionCorrecto extends JPanel {
 
 	private MenuPrincipal menuPrincipal;
 
-	public panelAñadirCamionCorrecto(AppEmpresa appE, JFrame frame) {
+	public PanelAñadirCamionCorrecto(AppEmpresa appE, JFrame frame) {
 		super();
 		this.armarPanel(appE, frame);
 	}

@@ -68,7 +68,7 @@ public class MenuBarra extends JMenuBar {
 //		----------------------------------------------------------------
 		menuItemBuscarCamion = new JMenuItem("Buscar Camion");
 		menuItemBuscarCamion.addActionListener( a -> {
-			frame.setContentPane(panelCamion = new PanelBuscarCamion());
+			frame.setContentPane(panelCamion = new PanelBuscarCamion(appE, frame));
 			frame.revalidate();
 			frame.repaint();
 		});
@@ -88,7 +88,7 @@ public class MenuBarra extends JMenuBar {
 //		----------------------------------------------------------------
 		menuItemAñadirPlanta = new JMenuItem("Añadir Ruta");
 		menuItemAñadirPlanta.addActionListener( a -> {
-			frame.setContentPane(panelPlanta = new PanelAñadirRuta(appE.getGrafo().getPlantas()));
+			frame.setContentPane(panelPlanta = new PanelAñadirRuta(appE, frame));
 			frame.revalidate();
 			frame.repaint();
 		});
@@ -114,14 +114,14 @@ public class MenuBarra extends JMenuBar {
 		
 		menuItemBajaInsumo = new JMenuItem("Baja Insumo");
 		menuItemBajaInsumo.addActionListener( a -> {
-			frame.setContentPane(panelInsumo = new PanelBajaInsumo(frame, appE.getInsumos()));
+			frame.setContentPane(panelInsumo = new PanelBajaInsumo(appE, frame));
 			frame.revalidate();
 			frame.repaint();
 		});
 		
 		menuItemVisualizarInsumo = new JMenuItem("Ver Insumos");
 		menuItemVisualizarInsumo.addActionListener( a -> {
-			frame.setContentPane(panelInsumo = new PanelVisualizarInsumo(frame));
+			frame.setContentPane(panelInsumo = new PanelVisualizarInsumos(appE, frame));
 			frame.revalidate();
 			frame.repaint();
 		});
@@ -139,23 +139,23 @@ public class MenuBarra extends JMenuBar {
 			frame.repaint();
 		});
 		
-		menuItemOrdenesCreadas = new JMenuItem("Ordenes creadas");
-		menuItemOrdenesCreadas.addActionListener( a -> {
-			frame.setContentPane(panelInsumo = new PanelOrdenesCreadas(appE, frame));
-			frame.revalidate();
-			frame.repaint();
-		});
-		
-		menuItemOrdenesProcesadas = new JMenuItem("Ordenes procesadas");
-		menuItemOrdenesProcesadas.addActionListener( a -> {
-			frame.setContentPane(panelInsumo = new PanelOrdenesProcesadas(appE, frame));
-			frame.revalidate();
-			frame.repaint();
-		});
+//		menuItemOrdenesCreadas = new JMenuItem("Ordenes creadas");
+//		menuItemOrdenesCreadas.addActionListener( a -> {
+//			frame.setContentPane(panelInsumo = new PanelOrdenesCreadas(appE, frame));
+//			frame.revalidate();
+//			frame.repaint();
+//		});
+//		
+//		menuItemOrdenesProcesadas = new JMenuItem("Ordenes procesadas");
+//		menuItemOrdenesProcesadas.addActionListener( a -> {
+//			frame.setContentPane(panelInsumo = new PanelOrdenesProcesadas(appE, frame));
+//			frame.revalidate();
+//			frame.repaint();
+//		});
 		
 		menuOrdenDePedido.add(menuItemRegistrarOrdenDePedido);
-		menuOrdenDePedido.add(menuItemOrdenesCreadas);
-		menuOrdenDePedido.add(menuItemOrdenesProcesadas);
+//		menuOrdenDePedido.add(menuItemOrdenesCreadas);
+//		menuOrdenDePedido.add(menuItemOrdenesProcesadas);
 		
 		this.add(menuArchivo);
 		this.add(menuCamion);

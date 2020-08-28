@@ -35,8 +35,12 @@ public class InsumoLiquido extends Insumo {
 
 	@Override
 	public void setPeso(Double peso) {
-		// TODO Auto-generated method stub
-		
+		return;
+	}
+	
+	@Override
+	public String getTipo() {
+		return "Liquido";
 	}
 
 	

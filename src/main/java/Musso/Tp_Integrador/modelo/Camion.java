@@ -89,7 +89,7 @@ public class Camion {
     
 	@Override
 	public String toString() {
-		return "Camion [patente=" + patente + "]";
+		return patente;
 	}
    
 

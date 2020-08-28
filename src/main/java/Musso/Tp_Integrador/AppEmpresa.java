@@ -29,20 +29,6 @@ public class AppEmpresa {
     	Planta p = new Planta(nombre, id);
     	grafo.addPlanta(p);
     }
-
-//    public void registrarPlanta(String nombre, g.vertexSet().stream().count()+1,
-//    							List<Planta> rutasPosibles) {
-//        Planta origen = new Planta(nombre);
-//        Ruta r = new Ruta();
-//        for( Planta destino : rutasPosibles ) {
-//            g.addVertex(destino);
-//
-//            r.setDistancia();
-//            r.setDuracion();
-//            r.setPesoMax();
-//            g.addEdge(origen, destino, r);
-//        }
-//    }
     
     public void addRuta(Ruta r) {
     	grafo.addRuta(r);
@@ -59,13 +45,6 @@ public class AppEmpresa {
 	public void addOrdenDePedido(OrdenDePedido ord) {
 		this.ordenesDePedido.add(ord);
 	}
-
-//	public void altaCamion(String patente, String marca, String modelo,
-//			Double kilometraje, Double costoPorKm, Double costoPorHora,
-//			LocalDate fechaCompra) {
-//    	Camion c = new Camion(patente, marca, modelo, kilometraje, costoPorKm, costoPorHora, fechaCompra);
-//    	camiones.add(c);
-//    }
     
     public void editarCamion() {
     	
@@ -116,7 +95,7 @@ public class AppEmpresa {
 		return lista;
     }
     
-    public List<Camion> buscarCamionPorKmMenores(String marca, Double deseado) throws CamionesNoEncontradosPorCriterioException {
+    public List<Camion> buscarCamionPorKmMenores(Double deseado) throws CamionesNoEncontradosPorCriterioException {
     	Predicate<Camion> p = (c) -> c.getKilometraje() <= deseado;
     	List<Camion> lista = new ArrayList<Camion>();
     	lista.addAll(this.buscarCamiones(p));
@@ -126,7 +105,7 @@ public class AppEmpresa {
 		return lista;
     }
    
-    public List<Camion> buscarCamionPorKmMayores(String marca, Double deseado) throws CamionesNoEncontradosPorCriterioException {
+    public List<Camion> buscarCamionPorKmMayores(Double deseado) throws CamionesNoEncontradosPorCriterioException {
     	Predicate<Camion> p = (c) -> c.getKilometraje() > deseado;
     	List<Camion> lista = new ArrayList<Camion>();
     	lista.addAll(this.buscarCamiones(p));
@@ -136,7 +115,7 @@ public class AppEmpresa {
 		return lista;
     }
     
-    public List<Camion> buscarCamionPorCostoPorKmMenores(String marca, Double deseado) throws CamionesNoEncontradosPorCriterioException {
+    public List<Camion> buscarCamionPorCostoPorKmMenores(Double deseado) throws CamionesNoEncontradosPorCriterioException {
     	Predicate<Camion> p = (c) -> c.getCostoPorKm() <= deseado;
     	List<Camion> lista = new ArrayList<Camion>();
     	lista.addAll(this.buscarCamiones(p));
@@ -146,7 +125,7 @@ public class AppEmpresa {
 		return lista;
     }
     
-    public List<Camion> buscarCamionPorCostoPorKmMayores(String marca, Double deseado) throws CamionesNoEncontradosPorCriterioException {
+    public List<Camion> buscarCamionPorCostoPorKmMayores(Double deseado) throws CamionesNoEncontradosPorCriterioException {
     	Predicate<Camion> p = (c) -> c.getCostoPorKm() > deseado;
     	List<Camion> lista = new ArrayList<Camion>();
     	lista.addAll(this.buscarCamiones(p));
@@ -156,7 +135,7 @@ public class AppEmpresa {
 		return lista;
     }
     
-    public List<Camion> buscarCamionPorCostoPorHoraMenores(String marca, Double deseado) throws CamionesNoEncontradosPorCriterioException {
+    public List<Camion> buscarCamionPorCostoPorHoraMenores(Double deseado) throws CamionesNoEncontradosPorCriterioException {
     	Predicate<Camion> p = (c) -> c.getCostoPorHora() <= deseado;
     	List<Camion> lista = new ArrayList<Camion>();
     	lista.addAll(this.buscarCamiones(p));
@@ -166,7 +145,7 @@ public class AppEmpresa {
 		return lista;
     }
     
-    public List<Camion> buscarCamionPorCostoPorHoraMayores(String marca, Double deseado) throws CamionesNoEncontradosPorCriterioException {
+    public List<Camion> buscarCamionPorCostoPorHoraMayores(Double deseado) throws CamionesNoEncontradosPorCriterioException {
     	Predicate<Camion> p = (c) -> c.getCostoPorHora() > deseado;
     	List<Camion> lista = new ArrayList<Camion>();
     	lista.addAll(this.buscarCamiones(p));

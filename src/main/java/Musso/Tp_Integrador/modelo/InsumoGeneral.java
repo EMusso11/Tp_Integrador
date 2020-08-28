@@ -24,5 +24,10 @@ public class InsumoGeneral extends Insumo{
 	public void setPeso(Double peso) {
 		this.peso = peso;
 	}
+	
+	@Override
+	public String getTipo() {
+		return "General";
+	}
     
 }

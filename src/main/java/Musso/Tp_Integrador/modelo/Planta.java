@@ -8,9 +8,10 @@ public class Planta extends Vertice<Planta> {
 
     private String nombre;
     private Integer id_planta;
+    private Double pageRank;
 
     private List<Camion> camiones;
-    private Map<Integer, Stock> productos; // la clave es el id del producto
+    private List<Stock> productos;
 
     public Planta() {}
     
@@ -18,12 +19,12 @@ public class Planta extends Vertice<Planta> {
         this.nombre = nombre;
         this.id_planta = id;
         this.camiones = new ArrayList<Camion>();
-//        this.productos= new Map<Integer, Stock>();
+        this.productos= new ArrayList<Stock>();
     }
     
     public void registrarStock(Insumo insumo, Double cantidad, Double cantidadMinima, Planta puntoDePedido) {
     	Stock s = new Stock(insumo, cantidad, cantidadMinima, puntoDePedido);
-    	productos.put(productos.size(), s);
+    	productos.add(s);
     }
     
     public Planta getValor() {
@@ -50,6 +51,31 @@ public class Planta extends Vertice<Planta> {
 	public String toString() {
 		return nombre;
 	}
-	
 
+	public void setPageRank(Double double1) {
+		this.pageRank = double1;
+	}
+	
+	public Double getPageRank() {
+		return this.pageRank;
+	}
+
+	public List<Camion> getCamiones() {
+		return camiones;
+	}
+
+	public void setCamiones(List<Camion> camiones) {
+		this.camiones = camiones;
+	}
+
+	public List<Stock> getProductos() {
+		return productos;
+	}
+
+	public void setProductos(List<Stock> productos) {
+		this.productos = productos;
+	}
+
+	
+	
 }
